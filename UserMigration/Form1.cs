@@ -17,22 +17,27 @@ namespace UserMigration
         public Form1()
         {
             InitializeComponent();
-             CurrentUser = userName.Split('\\');
+            init();
+        }
+        void init()
+        {
+            CurrentUser = userName.Split('\\');
+            folderInit();
         }
         private void migrateButton_Click(object sender, EventArgs e)
         {
-            SetFullAccessPermission(@"c:\users\" + oldUserNameTextBox.Text, userName);
+            SetFullAccessPermission(@"c:\users\" + userFoldersComboBox.Text, userName);
 
 
             foreach (var folder in FoldersToCopy)
             {
-                SetFullAccessPermission(@"c:\users\" + oldUserNameTextBox.Text + @"\" + folder, userName);
-                Copy(@"C:\users\" + oldUserNameTextBox.Text + @"\" + folder, @"C:\users\"+ CurrentUser[1] + @"\" + folder);
+                SetFullAccessPermission(@"c:\users\" + userFoldersComboBox.Text + @"\" + folder, userName);
+                Copy(@"C:\users\" + userFoldersComboBox.Text + @"\" + folder, @"C:\users\"+ CurrentUser[1] + @"\" + folder);
             }
 
             try
             {
-                string dirSource = chromeLocation + oldUserNameTextBox.Text + chromeLocationAfterUser;
+                string dirSource = chromeLocation + userFoldersComboBox.Text + chromeLocationAfterUser;
                 string dirDestination = @"C:\users\"+ CurrentUser[1] + @"\appdata\local\Google\chrome\User Data\Default";
 
                 Copy(dirSource,dirDestination);
@@ -66,6 +71,32 @@ namespace UserMigration
             dir_security.AddAccessRule(full_access_rule);
 
             Directory.SetAccessControl(directoryPath, dir_security);
+        }
+
+        void folderInit()
+        {
+            string[] dirsIndirectory = Directory.GetDirectories(@"c:\users");
+            var folders = dirSplitByFolder(dirsIndirectory);
+            foreach (var folder in folders)
+            {
+                userFoldersComboBox.Items.Add(folder);
+            }
+        }
+        
+        string[] dirSplitByFolder(string[] directories)
+        {
+            string[] dir = new string[directories.Length];
+            for (int i = 0; i < directories.Length; i++)
+            {
+                var splitDir = directories[i].Split('\\');
+                dir[i] = splitDir[2];
+            }
+            return dir; 
+        }
+
+        private void userFoldersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

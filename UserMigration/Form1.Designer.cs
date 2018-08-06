@@ -29,48 +29,49 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.oldUserNameTextBox = new System.Windows.Forms.TextBox();
             this.migrateButton = new System.Windows.Forms.Button();
+            this.userFoldersComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // oldUserNameTextBox
-            // 
-            this.oldUserNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.oldUserNameTextBox.Location = new System.Drawing.Point(12, 12);
-            this.oldUserNameTextBox.Name = "oldUserNameTextBox";
-            this.oldUserNameTextBox.Size = new System.Drawing.Size(318, 35);
-            this.oldUserNameTextBox.TabIndex = 0;
             // 
             // migrateButton
             // 
             this.migrateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.migrateButton.Location = new System.Drawing.Point(12, 53);
+            this.migrateButton.Location = new System.Drawing.Point(63, 117);
+            this.migrateButton.Margin = new System.Windows.Forms.Padding(2);
             this.migrateButton.Name = "migrateButton";
-            this.migrateButton.Size = new System.Drawing.Size(318, 74);
+            this.migrateButton.Size = new System.Drawing.Size(213, 48);
             this.migrateButton.TabIndex = 1;
             this.migrateButton.Text = "Migrate";
             this.migrateButton.UseVisualStyleBackColor = true;
             this.migrateButton.Click += new System.EventHandler(this.migrateButton_Click);
             // 
+            // userFoldersComboBox
+            // 
+            this.userFoldersComboBox.FormattingEnabled = true;
+            this.userFoldersComboBox.Location = new System.Drawing.Point(63, 54);
+            this.userFoldersComboBox.Name = "userFoldersComboBox";
+            this.userFoldersComboBox.Size = new System.Drawing.Size(213, 21);
+            this.userFoldersComboBox.TabIndex = 2;
+            this.userFoldersComboBox.SelectedIndexChanged += new System.EventHandler(this.userFoldersComboBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 139);
+            this.ClientSize = new System.Drawing.Size(363, 211);
+            this.Controls.Add(this.userFoldersComboBox);
             this.Controls.Add(this.migrateButton);
-            this.Controls.Add(this.oldUserNameTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "UserMigration";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox oldUserNameTextBox;
         private System.Windows.Forms.Button migrateButton;
+        private System.Windows.Forms.ComboBox userFoldersComboBox;
     }
 }
 
